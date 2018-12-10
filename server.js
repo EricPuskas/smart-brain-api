@@ -11,13 +11,21 @@ const signin = require("./controllers/signin");
 const profile = require("./controllers/profile");
 const image = require("./controllers/image");
 
-const db = knex({
+let db = knex({
   client: process.env.DB_CLIENT,
   connection: {
     connectionString: process.env.DATABASE_URL,
     ssl: true
   }
 });
+
+if (process.env.NODE_ENV == "development") {
+  db = knex({
+    client: process.env.DB_CLIENT,
+    connection: process.env.DATABASE_URL
+  });
+}
+
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -32,7 +40,9 @@ app.post("/register", register.handleRegister(db, bcrypt));
 app.get("/profile/:id", profile.getUserProfile(db));
 
 app.put("/image", image.handleImage(db));
+
 app.post("/imageurl", image.handleApiCall);
+
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
 });
