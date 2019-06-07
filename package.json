@@ -4,21 +4,27 @@
   "description": "API for smart-brain app",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js"
+    "start": "nodemon -L server.js"
   },
   "author": "Eric Puskas",
   "license": "MIT",
   "dependencies": {
+    "axios": "^0.19.0",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.18.3",
+    "bootstrap": "^4.3.1",
     "clarifai": "^2.9.0",
+    "compression": "^1.7.3",
     "cors": "^2.8.5",
+    "dotenv": "^6.2.0",
     "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
     "knex": "^0.15.2",
+    "morgan": "^1.9.1",
     "pg": "^7.7.1",
-    "dotenv": "^6.2.0"
+    "redis": "^2.8.0"
   },
   "devDependencies": {
-    "nodemon": "^1.18.7"
+    "nodemon": "^1.18.8"
   }
 }
